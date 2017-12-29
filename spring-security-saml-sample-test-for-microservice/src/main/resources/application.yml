@@ -1,0 +1,28 @@
+server:
+  port: 8080  
+#  contextPath: /springbootsaml
+
+logging:
+  file: logs/file.log
+  level:
+    org.springframework.security.saml: INFO
+    org.opensaml : INFO
+
+    
+spring:
+  idp: 
+    metadata: http://idp.mingli.com/idp/shibboleth
+#    metadata: https://idp.ssocircle.com/idp-meta.xml  #MetadataURL
+    entityid: urn:test:mingli:springboot
+    credential:
+      storefile: classpath:/saml/samlKeystore.jks
+      defaultkey: apollo
+      password: nalle123
+    sso: 
+      responseskew: 6000  #(we should use NTP server to fix that problem in production) for fix the issue error like follow: Response issue time is either too old or with date in the future, skew 60, time 2017-12-28T16:49:58.000Z
+    logout:
+      responseskew: 6000  #(we should use NTP server to fix that problem in production) for fix the issue error like follow: Response issue time in LogoutResponse is either too old or with date in the future
+      
+      
+
+ 
